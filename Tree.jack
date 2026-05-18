@@ -1,0 +1,207 @@
+class Tree {
+
+   field int x, y; // screen location of the Tree's top-left corner
+
+
+   /** Constructs a new tree with a given location. */
+   constructor Tree new(int Ax, int Ay) {
+      let x = Ax;
+      let y = Ay;
+      do draw(x,y);
+      return this;
+   }
+   
+   
+   /** Disposes this tree. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+
+	/** Draws the tree on the screen. */
+   method void draw(int x,int y) {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+        
+        do Memory.poke(memAddress+0, 448);
+		do Memory.poke(memAddress+32, 2032);
+		do Memory.poke(memAddress+64, 2032);
+		do Memory.poke(memAddress+96, 4088);
+		do Memory.poke(memAddress+128, 4088);
+		do Memory.poke(memAddress+160, 8188);
+		do Memory.poke(memAddress+192, 8188);
+		do Memory.poke(memAddress+224, 16382);
+		do Memory.poke(memAddress+256, 16382);
+		do Memory.poke(memAddress+288, 32767);
+		do Memory.poke(memAddress+320, 32767);
+		do Memory.poke(memAddress+352, 448);
+		do Memory.poke(memAddress+384, 448);
+		do Memory.poke(memAddress+416, 448);
+		do Memory.poke(memAddress+448, 448);
+		do Memory.poke(memAddress+480, 0);
+        return;
+   }
+   
+   
+   
+   /** Draws the tree on the screen in 90 degrees */
+   method void draw90deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, 96);
+		do Memory.poke(memAddress+32, 480);
+		do Memory.poke(memAddress+64, 2016);
+		do Memory.poke(memAddress+96, 8160);
+		do Memory.poke(memAddress+128, 32736);
+		do Memory.poke(memAddress+160, 32736);
+		do Memory.poke(memAddress+192, -2);
+		do Memory.poke(memAddress+224, -2);
+		do Memory.poke(memAddress+256, -2);
+		do Memory.poke(memAddress+288, 32736);
+		do Memory.poke(memAddress+320, 32736);
+		do Memory.poke(memAddress+352, 8160);
+		do Memory.poke(memAddress+384, 2016);
+		do Memory.poke(memAddress+416, 480);
+		do Memory.poke(memAddress+448, 96);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+	
+	
+	/** Draws the tree on the screen in 180 degrees */
+	method void draw180deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 896);
+		do Memory.poke(memAddress+64, 896);
+		do Memory.poke(memAddress+96, 896);
+		do Memory.poke(memAddress+128, 896);
+		do Memory.poke(memAddress+160, -2);
+		do Memory.poke(memAddress+192, -2);
+		do Memory.poke(memAddress+224, 32764);
+		do Memory.poke(memAddress+256, 32764);
+		do Memory.poke(memAddress+288, 16376);
+		do Memory.poke(memAddress+320, 16376);
+		do Memory.poke(memAddress+352, 8176);
+		do Memory.poke(memAddress+384, 8176);
+		do Memory.poke(memAddress+416, 4064);
+		do Memory.poke(memAddress+448, 4064);
+		do Memory.poke(memAddress+480, 896);
+		return;
+	}
+	
+	
+	/** Draws the tree on the screen in 270 degrees */
+	method void draw270deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16);
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 1536);
+		do Memory.poke(memAddress+64, 1920);
+		do Memory.poke(memAddress+96, 2016);
+		do Memory.poke(memAddress+128, 2040);
+		do Memory.poke(memAddress+160, 2046);
+		do Memory.poke(memAddress+192, 2046);
+		do Memory.poke(memAddress+224, 32767);
+		do Memory.poke(memAddress+256, 32767);
+		do Memory.poke(memAddress+288, 32767);
+		do Memory.poke(memAddress+320, 2046);
+		do Memory.poke(memAddress+352, 2046);
+		do Memory.poke(memAddress+384, 2040);
+		do Memory.poke(memAddress+416, 2016);
+		do Memory.poke(memAddress+448, 1920);
+		do Memory.poke(memAddress+480, 1536);
+		return;
+	}
+   
+   
+	/** Draws the tree on the screen in 270 degrees */
+	method void draw360deg() {
+		do draw(x,y);
+        return;
+	}
+   
+    
+	/** Erases the tree from the screen. */
+   method void erase(int x, int y) {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+        
+        do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+        return;
+   }
+
+   
+   
+     /** Moves the tree up by 2 pixels. */
+   method void moveUp() {
+      if (y > 101) {
+         do erase(x,y);
+         let y = y - 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the tree down by 2 pixels. */
+   method void moveDown() {
+      if (y < 240) {
+         do erase(x,y);
+         let y = y + 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the tree left by 2 pixels. */
+   method void moveLeft() {
+      if (x > 1) {
+         do erase(x,y);
+         let x = x - 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the tree right by 2 pixels. */
+   method void moveRight() {
+      if (x < 510) {
+         do erase(x,y);
+         let x = x + 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+
+
+
+
+   
+}

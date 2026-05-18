@@ -1,0 +1,207 @@
+class Robot {
+
+   field int x, y; // screen location of the Robot's top-left corner
+
+
+   /** Constructs a new Robot with a given location. */
+   constructor Robot new(int Ax, int Ay) {
+      let x = Ax;
+      let y = Ay;
+      do draw(x,y);
+      return this;
+   }
+
+
+	/** Disposes this robot. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+
+	/** Draws the Robot on the screen. */
+   method void draw(int x,int y) {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+        
+        do Memory.poke(memAddress+0, -4081);
+		do Memory.poke(memAddress+32, -4081);
+		do Memory.poke(memAddress+64, -4081);
+		do Memory.poke(memAddress+96, -1);
+		do Memory.poke(memAddress+128, -1);
+		do Memory.poke(memAddress+160, -15421);
+		do Memory.poke(memAddress+192, -15421);
+		do Memory.poke(memAddress+224, -15421);
+		do Memory.poke(memAddress+256, -1);
+		do Memory.poke(memAddress+288, -1);
+		do Memory.poke(memAddress+320, -1);
+		do Memory.poke(memAddress+352, -15933);
+		do Memory.poke(memAddress+384, -8185);
+		do Memory.poke(memAddress+416, -993);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+        return;
+   }
+   
+   
+   
+   /** Draws the Robot on the screen in 90 degrees */
+   method void draw90deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1809);
+		do Memory.poke(memAddress+96, -1817);
+		do Memory.poke(memAddress+128, 6375);
+		do Memory.poke(memAddress+160, 6371);
+		do Memory.poke(memAddress+192, 8179);
+		do Memory.poke(memAddress+224, 8179);
+		do Memory.poke(memAddress+256, 8179);
+		do Memory.poke(memAddress+288, 8163);
+		do Memory.poke(memAddress+320, 6375);
+		do Memory.poke(memAddress+352, 6375);
+		do Memory.poke(memAddress+384, -1817);
+		do Memory.poke(memAddress+416, -1809);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		return;
+	}
+	
+	
+	/** Draws the Robot on the screen in 180 degrees */
+	method void draw180deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1985);
+		do Memory.poke(memAddress+96, -8185);
+		do Memory.poke(memAddress+128, -15485);
+		do Memory.poke(memAddress+160, -1);
+		do Memory.poke(memAddress+192, -1);
+		do Memory.poke(memAddress+224, -1);
+		do Memory.poke(memAddress+256, -15421);
+		do Memory.poke(memAddress+288, -15421);
+		do Memory.poke(memAddress+320, -15421);
+		do Memory.poke(memAddress+352, -1);
+		do Memory.poke(memAddress+384, -1);
+		do Memory.poke(memAddress+416, -4081);
+		do Memory.poke(memAddress+448, -4081);
+		do Memory.poke(memAddress+480, -4081);
+		return;
+	}
+	
+	
+	/** Draws the Robot on the screen in 270 degrees */
+	method void draw270deg() {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16);
+		
+		do erase(x,y);
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -2273);
+		do Memory.poke(memAddress+96, -6369);
+		do Memory.poke(memAddress+128, -6376);
+		do Memory.poke(memAddress+160, -6376);
+		do Memory.poke(memAddress+192, -14344);
+		do Memory.poke(memAddress+224, -12296);
+		do Memory.poke(memAddress+256, -12296);
+		do Memory.poke(memAddress+288, -12296);
+		do Memory.poke(memAddress+320, -14568);
+		do Memory.poke(memAddress+352, -6376);
+		do Memory.poke(memAddress+384, -6369);
+		do Memory.poke(memAddress+416, -2273);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		return;
+	}
+   
+   
+	/** Draws the Robot on the screen in 270 degrees */
+	method void draw360deg() {
+		do draw(x,y);
+        return;
+	}
+   
+    
+	/** Erases the square from the screen. */
+   method void erase(int x, int y) {
+        var int memAddress;
+        let memAddress = 16384 + (32*y) + (x/16) ;
+        
+        do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+        return;
+   }
+
+   
+   
+     /** Moves the robot up by 2 pixels. */
+   method void moveUp() {
+      if (y > 101) {
+         do erase(x,y);
+         let y = y - 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the robot down by 2 pixels. */
+   method void moveDown() {
+      if (y < 240) {
+         do erase(x,y);
+         let y = y + 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the robot left by 2 pixels. */
+   method void moveLeft() {
+      if (x > 1) {
+         do erase(x,y);
+         let x = x - 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+   /** Moves the robot right by 2 pixels. */
+   method void moveRight() {
+      if (x < 510) {
+         do erase(x,y);
+         let x = x + 2;
+		 do draw(x,y);
+      }
+      return;
+   }
+
+
+
+
+
+   
+}

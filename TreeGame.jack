@@ -1,0 +1,93 @@
+class TreeGame {
+  
+   field Tree tree; 
+   field int direction; 
+   field int numOfActions;
+
+   /** Constructs a new tree Game. */
+   constructor TreeGame new() {
+      let tree = Tree.new(300,100); //TO DO
+      let direction = 0;  //initial state is no movement
+      return this;
+   }
+   
+    /** Disposes this game. */
+   method void dispose() {
+      do tree.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+   /** Moves the Tree in the current direction. */
+   method void moveTree() {
+      if (direction = 1) { do tree.moveUp(); }
+      if (direction = 2) { do tree.moveDown(); }
+      if (direction = 3) { do tree.moveLeft(); }
+      if (direction = 4) { do tree.moveRight(); }
+      do Sys.wait(5);  // delays the next movement
+      return;
+   }
+   
+   /** Runs the game: handles the user's inputs and moves the tree accordingly */
+   method void run() {
+      var char key,choice;  // the key currently pressed by the user
+      var boolean exit;
+      let exit = false;
+	  
+      do displayActions();
+	  
+	  
+      while (~exit) {
+         // waits for a key to be pressed
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+            do moveTree();
+         }
+		 
+         if (key = 81)  
+		 { 
+		 do Screen.clearScreen();
+		 let numOfActions = numOfActions+1;
+		 let exit = true;
+		 do Output.printString("You chose Tree and the number of actions that you have done is:");
+		 do Output.println();
+		 do Output.printInt(numOfActions);
+		 do Output.println();
+		 do Output.printString("It was a plesure to play with you!!!");
+		 }     // q key
+         if (key = 49)  { let numOfActions = numOfActions+1; do tree.draw90deg(); } // 1 key 
+         if (key = 50)  { let numOfActions = numOfActions+1; do tree.draw180deg(); } // 2 key 
+		 if (key = 51)  { let numOfActions = numOfActions+1; do tree.draw270deg(); } // 3 key 
+		 if (key = 52)  { let numOfActions = numOfActions+1; do tree.draw360deg(); } // 4 key 
+         if (key = 131) { let numOfActions = numOfActions+1; let direction = 1; }   // up arrow
+         if (key = 133) { let numOfActions = numOfActions+1; let direction = 2; }   // down arrow
+         if (key = 130) { let numOfActions = numOfActions+1; let direction = 3; }   // left arrow
+         if (key = 132) { let numOfActions = numOfActions+1; let direction = 4; }   // right arrow
+
+
+         // waits for the key to be released
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do moveTree();
+         }
+     } // while
+     return;
+   }
+   
+   
+   method void displayActions() {
+		do Output.println();
+        do Output.printString("Available actions:");
+		do Output.println();
+        do Output.printString("- Move on the screen from right to left and left to right.");
+		do Output.println();
+        do Output.printString("- Scroll on the screen from top to bottom and bottom to top.");
+		do Output.println();
+        do Output.printString("- Rotation of the shape by 1: 90 degrees, 2: 180 degrees, 3: 270 degrees, and 4: 360 degrees.");
+		do Output.println();
+        do Output.printString("- Enter q for end actions.");
+		do Output.println();
+		return;
+    }
+
+}

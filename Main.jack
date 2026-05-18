@@ -1,0 +1,27 @@
+class Main {
+    function void main() {
+		var TreeGame tree;
+		var RobotGame robot;
+		var char choice;
+		do Output.printString("Please enter T for Tree or R for Robot:");
+		do Output.println();
+		let choice=Keyboard.readChar();
+		
+		
+	    if (choice = 84) //choice=T
+		{
+			let tree = TreeGame.new();
+			do tree.run();
+			do tree.dispose();
+		}
+		if (choice = 82) //choice=R
+		{
+			let robot = RobotGame.new();
+			do robot.run();
+			do robot.dispose();
+		}
+		
+        return;
+    }
+}
+
